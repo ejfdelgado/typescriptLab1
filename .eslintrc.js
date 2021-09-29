@@ -7,9 +7,9 @@ module.exports = {
   },
   plugins: ["@typescript-eslint"],
   extends: [
-    "google",
     "eslint:recommended",
-    "prettier",
+    "google", // https://github.com/google/eslint-config-google
+    "prettier", // https://github.com/prettier/eslint-config-prettier
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
   ],
