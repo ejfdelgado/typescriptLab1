@@ -2,7 +2,11 @@ import { from } from "rxjs";
 import { ExternalService } from "./services/fetch";
 import { FechaModel } from "./model/Fecha";
 
-export async function main() : Promise<string> {
+/**
+ * Entrega la fecha usando promesas y observables
+ * @return {Promise<string>} el texto de las fechas
+ */
+export async function main(): Promise<string> {
   const libreriaReal = new ExternalService();
   const calc = new Calculadora(libreriaReal);
   const pet1 = await calc.getTimeObs();
@@ -10,14 +14,25 @@ export async function main() : Promise<string> {
   return `${pet1.toISOString()} - ${pet2.toISOString()}`;
 }
 
+/**
+ * Prueba de Calculadora
+ */
 export class Calculadora {
   static URL = "https://worldtimeapi.org/api/timezone/America/Bogota";
   externalService: ExternalService;
 
+  /**
+   * @date 2021-09-29
+   * @param {ExternalService} externalService Servicio externo para hacer get
+   */
   constructor(externalService: ExternalService) {
     this.externalService = externalService;
   }
 
+  /**
+   * @date 2021-09-29
+   * @return {Promise<Date>} Fecha obtenida
+   */
   async procesarTiempo(): Promise<Date> {
     console.log("procesarTiempo");
     try {
@@ -32,7 +47,10 @@ export class Calculadora {
     }
   }
 
-  testRxJs() : void {
+  /**
+   * @date 2021-09-29
+   */
+  testRxJs(): void {
     const promesa = this.externalService.get(Calculadora.URL);
     const data = from(promesa);
     data.subscribe({
@@ -48,6 +66,10 @@ export class Calculadora {
     });
   }
 
+  /**
+   * @date 2021-09-29
+   * @return {Promise<Date>} fecha
+   */
   async getTimeObs(): Promise<Date> {
     const data = await this.externalService.getObs(Calculadora.URL).toPromise();
     console.log("data", data);

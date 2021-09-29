@@ -1,12 +1,12 @@
-import { describe } from "mocha";
-import { expect } from "chai";
-import { from } from "rxjs";
-import { mock, instance, when } from "ts-mockito";
+import {describe, it} from "mocha";
+import {expect} from "chai";
+import {from} from "rxjs";
+import {mock, instance, when} from "ts-mockito";
 import Calculadora from "../src/index";
-import { ExternalService } from "../src/services/fetch";
+import {ExternalService} from "../src/services/fetch";
 
 describe("Prueba de Api", () => {
-  it("Leer fecha", async function () {
+  it("Leer fecha", async function() {
     // Definir los mocks
     // 1.
     const mockedServiceCase: ExternalService = mock(ExternalService);
@@ -27,14 +27,14 @@ describe("Prueba de Api", () => {
     console.log(fecha);
   });
 
-  it("Asegurar que cuando el servicio tercero está dañado, me retorne la fecha 0", async function () {
+  it("Si hay error debe retornar la fecha 0", async function() {
     // Definir los mocks
     // 1.
     const mockedServiceCase: ExternalService = mock(ExternalService);
 
     // 2.
     when(mockedServiceCase.get(Calculadora.URL)).thenReject(
-      new Error("Timeout")
+        new Error("Timeout"),
     );
     // 3.
     const mockedService: ExternalService = instance(mockedServiceCase);
@@ -48,7 +48,7 @@ describe("Prueba de Api", () => {
     expect(fecha.getTime()).to.equal(0);
   });
 
-  it("Leer fecha con observables", async function () {
+  it("Leer fecha con observables", async function() {
     // Definir los mocks
     // 1.
     const mockedServiceCase: ExternalService = mock(ExternalService);

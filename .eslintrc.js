@@ -3,21 +3,18 @@ module.exports = {
   parser: "@typescript-eslint/parser", // Specifies the ESLint parser
   parserOptions: {
     ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
-    sourceType: "module" // Allows for the use of imports
+    sourceType: "module", // Allows for the use of imports
   },
   plugins: ["@typescript-eslint"],
   extends: [
+    "google",
     "eslint:recommended",
+    //"prettier",
     "plugin:@typescript-eslint/eslint-recommended",
-     // Uses the recommended rules from the @typescript-eslint/eslint-plugin
     "plugin:@typescript-eslint/recommended",
   ],
   rules: {
-    "@typescript-eslint/adjacent-overload-signatures": 2,
-    "@typescript-eslint/ban-ts-comment": 2,
-    "@typescript-eslint/ban-types": 2,
-    "@typescript-eslint/explicit-module-boundary-types": 2,
-    "@typescript-eslint/no-empty-interface": 2,
-    "@typescript-eslint/no-explicit-any": 1,
+    "object-curly-spacing": 0, // google: Prettier me formatea import { from } from "rxjs"; pero se obliga a import {from} from "rxjs";
+    "quotes": 0, // google: No se desea obligar a que solo se use comilla simple, quiero poder escribir 'Esto "es" fácil', en vez de "Esto \"es\" fácil".
   },
 };

@@ -1,3 +1,3 @@
 export interface FechaModel {
-    unixtime: number
+  unixtime: number;
 }
